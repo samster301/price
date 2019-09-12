@@ -1,21 +1,30 @@
-package com.wipro.price.bean;
+package com.wipro.price.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Currency;
 
 @Entity
+@Table(name = "productPrice")
 public class ProductPrice {
 
     @Id
-    private int priceId;
+    @Column(name = "productId")
     private int productId;
+
+    @Column(name = "priceId")
+    private int priceId;
+
+    @Column(name = "price")
     private BigDecimal price;
-    private Currency currency;
+
+    @Column(name = "currency")
+    private String currency;
 
 
-    public ProductPrice(int priceId, int productId, BigDecimal price, Currency currency) {
+    public ProductPrice(int priceId, int productId, BigDecimal price, String currency) {
         this.priceId = priceId;
         this.productId = productId;
         this.price = price;
@@ -49,11 +58,11 @@ public class ProductPrice {
         this.price = price;
     }
 
-    public Currency getCurrency() {
+    public String getCurrency() {
         return currency;
     }
 
-    public void setCurrency(Currency currency) {
+    public void setCurrency(String currency) {
         this.currency = currency;
     }
 }
