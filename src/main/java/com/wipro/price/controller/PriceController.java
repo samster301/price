@@ -21,7 +21,7 @@ public class PriceController {
     PriceService priceService;
 
     @GetMapping("/listAll")
-    public List<ProductPrice> displayAllPrice(){
+    public List<ProductPrice> displayAllPrice() {
         return priceService.getAllPrice();
     }
 
@@ -31,7 +31,7 @@ public class PriceController {
     }
 
     @PostMapping("/addPrice")
-    public ResponseEntity<Object> addPrice(@RequestBody ProductPrice productPrice){
+    public ResponseEntity<Object> addPrice(@RequestBody ProductPrice productPrice) {
         ProductPrice savedPrice = priceService.saveOrUpdatePrice(productPrice);
 
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{productId}").buildAndExpand(savedPrice.getProductId()).toUri();
@@ -39,7 +39,7 @@ public class PriceController {
     }
 
     @RequestMapping(value = "/deleteById/{productId}")
-    public ResponseEntity deletePrice(@PathVariable int productId){
+    public ResponseEntity deletePrice(@PathVariable int productId) {
         priceService.deletePricebyProductId(productId);
         return new ResponseEntity(HttpStatus.OK);
     }
