@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/price")
+@RequestMapping("/products")
 public class PriceController {
 
     @Autowired
@@ -25,12 +25,12 @@ public class PriceController {
         return priceService.getAllPrice();
     }
 
-    @GetMapping("/listById/{productId}")
+    @GetMapping("{productId}/listPrice")
     public BigDecimal displayPriceByProduct(@PathVariable int productId) throws PriceNotFoundException {
         return priceService.getPriceByProductId(productId);
     }
 
-    @PostMapping("/add")
+    @PostMapping("/addPrice")
     public ResponseEntity<Object> addPrice(@RequestBody ProductPrice productPrice){
         ProductPrice savedPrice = priceService.saveOrUpdatePrice(productPrice);
 
