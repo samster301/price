@@ -12,7 +12,7 @@ public class ProductPrice {
 
     @Id
     @Column(name = "productId")
-    private int productId;
+    private Long productId;
 
     @Column(name = "priceId")
     private int priceId;
@@ -24,7 +24,7 @@ public class ProductPrice {
     private String currency;
 
 
-    public ProductPrice(int priceId, int productId, BigDecimal price, String currency) {
+    public ProductPrice(int priceId, Long productId, BigDecimal price, String currency) {
         this.priceId = priceId;
         this.productId = productId;
         this.price = price;
@@ -42,11 +42,11 @@ public class ProductPrice {
         this.priceId = priceId;
     }
 
-    public int getProductId() {
+    public Long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(Long productId) {
         this.productId = productId;
     }
 

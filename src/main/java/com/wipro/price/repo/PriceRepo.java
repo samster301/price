@@ -8,5 +8,5 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public interface PriceRepo extends CrudRepository<ProductPrice,Integer>{
+public interface PriceRepo extends CrudRepository<ProductPrice,Long>{
 }

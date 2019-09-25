@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -17,14 +15,23 @@ public class PriceServiceImpl implements PriceService {
     @Autowired
     PriceRepo priceRepo;
 
+
+
     @Override
     public List<ProductPrice> getAllPrice() {
         return (List<ProductPrice>) priceRepo.findAll();
     }
 
     @Override
-    public BigDecimal getPriceByProductId(int productId) {
-        return priceRepo.findById(productId).get().getPrice();
+    public ProductPrice getPriceByProductId(Long productId) {
+
+        ProductPrice productPrice = new ProductPrice();
+
+        productPrice.setPriceId(priceRepo.findById(productId).get().getPriceId());
+        productPrice.setPrice(priceRepo.findById(productId).get().getPrice());
+        productPrice.setProductId(priceRepo.findById(productId).get().getProductId());
+        productPrice.setCurrency(priceRepo.findById(productId).get().getCurrency());
+        return productPrice;
     }
 
     @Override
@@ -33,7 +40,7 @@ public class PriceServiceImpl implements PriceService {
     }
 
     @Override
-    public void deletePricebyProductId(int productId) {
+    public void deletePricebyProductId(Long productId) {
          priceRepo.deleteById(productId);
     }
 }
